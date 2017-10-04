@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+<style>
+
+.collapsing {
+    -webkit-transition-delay: 3s;
+    transition-delay: 3s;
+    visibility: hidden;
+}
+
+/*.collapse.show {
+    -webkit-transition-delay: 2s;
+    transition-delay: 2s;
+    visibility: visible;
+}*/
+
+  </style>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DummyAPI</title>
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/flexslider.css" rel="stylesheet" >
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/queries.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+       <link href="../static/styles/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/styles/flexslider.css" rel="stylesheet" >
+    <link href="../static/styles/styles.css" rel="stylesheet">
+    <link href="../static/styles/queries.css" rel="stylesheet">
+    <link href="../static/styles/animate.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+   <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="../static/js/waypoints.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+        <script src="../static/js/scripts.js"></script>
+        <script src="../static/js/jquery.flexslider.js"></script>
+        <script src="../static/js/modernizr.js"></script>
+
+
+    <section class="intro text-center section-padding" id="intro">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2 wp1">
+                <h1 class="arrow"> User API Documentation</h1>
+              </div>
+            </div>
+          </div>
+    </section>
+
+
+
+
+
+
+
+<!--
+
+    <center><h1> User API Doctmentation </center></h1>-->
+
+  <!--<div data-role="main" class="ui-content">-->
+    <div data-role="collapsible">
+     
+      <!--<h5 font color = "red">List all users </h5>-->
+      <h6> List all users</h6>
+       <pre>
+      <h3>GET /listusers</h3>
+      <h3>Response</h3>
+<!--<font color ="black" face ="Courier New">-->
+{
+  "data": [
+    {
+      "Age": "25", 
+      "Name ": "Ankit Tiwari", 
+      "city": "Bangalore", 
+      "email": "ankit.tiwari@test.com", 
+      "id": "1"
+    }, 
+    {
+      "Age": "22", 
+      "Name ": "Karan", 
+      "city": "Mumbai", 
+      "email": "karan@kk.com", 
+      "id": "2"
+    }, 
+    {
+      "Age": "12", 
+      "Name ": "Amit", 
+      "city": "Bhopal", 
+      "email": "amit@amit.com", 
+      "id": "3"
+    }, 
+    {
+      "Age": "28", 
+      "Name ": "Ram", 
+      "city": "Varanasi", 
+      "email": "ram@ram.com", 
+      "id": "4"
+    }
+  ]
+}
+      </pre>
+      
+    </div>
+  </div>
+
+<br>
+ <!--<div data-role="main" class="ui-content">-->
+    <div data-role="collapsible">
+      <h1>List a particular user </h1>
+    
+        <pre>
+      <h3>GET /listusers/2</h3>
+<h3>Response </h3>
+{
+  "data": {
+    "Age": "22", 
+    "Name ": "Karan", 
+    "city": "Mumbai", 
+    "email": "karan@kk.com", 
+    "id": "2"
+  }
+  </pre>
+  
+
+      </code>
+    </div>
+      <br>
+      <div data-role="collapsible">
+     
+      <!--<h5 font color = "red">List all users </h5>-->
+      <h6> Add a user</h6>
+       <pre>
+      <h3>POST /adduser</h3>
+      <h3>Payload</h3>
+      {
+      "Age": "33", 
+      "Name ": "Alex", 
+      "city": "Goa", 
+      "email": "ankit.tiwari@test.com", 
+      "id": "12"
+       }
+      <h3>Response</h3>
+<!--<font color ="black" face ="Courier New">-->
+{
+    "data": {
+        "Age": "33",
+        "Email": "alex@alex.com",
+        "city": "Goa",
+        "created at": "Sun Oct  1 21:21:49 2017",
+        "id": "12",
+        "name": "Alex"
+        }
+}
+       </pre>
+      </div>
+
+<br>
+ <div data-role="collapsible">
+      <h6>delete a particular user </h6>
+      <pre>
+      <h3>DELETE /listusers/2</h3>
+<h3>Response </h3>
+204
+  </pre>
+  
+ </div>
+ 
+<!--
+
+<div class="container">-->
+    
+        <!--<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">-->
+          <!--<br>
+           <div data-role="collapsible">
+             
+      <h6>Delay Responce </h6>
+              <pre>
+      <h3>GET /listusers/2</h3>
+<h3>Response </h3>
+{
+  "data": {
+    "Age": "22", 
+    "Name ": "Karan", 
+    "city": "Mumbai", 
+    "email": "karan@kk.com", 
+    "id": "2"
+  }
+  <font color="red">Will show Responce</font>
+  </pre>-->
+  
+       <!--<font color ="white">Delay Response-->
+      </a>
+    </p>
+    <!--<div class="collapse" id="collapseExample">
+        <div class="card card-block">-->
+      
+        </div>
+    </div>
+</div>
+           </div>
+
+
+
+
+      <br>
+      <div data-role="collapsible">
+     
+      <!--<h5 font color = "red">List all users </h5>-->
+      <h6> Update a user </h6>
+       <pre>
+      <h3>PUT /updateuser/2</h3>
+      <h3>Payload</h3>
+      {
+      "Age": "31", 
+      "Name ": "amit", 
+      "city": "Mumbai", 
+      "email": "test@test.com", 
+      "id": "12"
+       }
+      <h3>Response</h3>
+{
+    "data": {
+        "Age": "31",
+        "Name ": "amit",
+        "city": "Mumbai",
+        "email": "test@test.com",
+        "id": "12",
+        "updated at": "Mon Oct  2 00:55:48 2017"
+    }
+}
+       </pre>
+      </div>
+    
+           
+
+
+
+
+
+
+
+
+
+
+
+<!--<h1> 
+&nbsp;Listing all users
+</h1>
+<pre>
+<h3>GET /listusers</h3>
+<strong>Response</strong>
+
+{
+  "data": [
+    {
+      "Age": "25", 
+      "Name ": "Ankit Tiwari", 
+      "city": "Bangalore", 
+      "email": "ankit.tiwari@test.com", 
+      "id": "1"
+    }, 
+    {
+      "Age": "22", 
+      "Name ": "Karan", 
+      "city": "Mumbai", 
+      "email": "karan@kk.com", 
+      "id": "2"
+    }, 
+    {
+      "Age": "12", 
+      "Name ": "Amit", 
+      "city": "Bhopal", 
+      "email": "amit@amit.com", 
+      "id": "3"
+    }, 
+    {
+      "Age": "28", 
+      "Name ": "Ram", 
+      "city": "Varanasi", 
+      "email": "ram@ram.com", 
+      "id": "4"
+    }
+  ]
+}
+
+</pre>-->
+
+<!--<h1> 
+&nbsp;Listing a particular user
+</h1>
+<pre>
+<code>
+<h3>GET /listusers/2</h3>
+<strong>Response</strong>
+
+{
+  "data": {
+    "Age": "22", 
+    "Name ": "Karan", 
+    "city": "Mumbai", 
+    "email": "karan@kk.com", 
+    "id": "2"
+  }
+}-->
