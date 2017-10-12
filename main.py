@@ -5,40 +5,56 @@ import os
 
 app = Flask(__name__)
 
-
-
 # global json data 
 
-user1 = {"id": "1",
+users = {"data":[
+
+    {
+
+         "id": 1,
          "Name ": "Ankit Tiwari",
          "Age": "25",
 
          "city": "Bangalore",
-         "email": "ankit.tiwari@test.com"
-
-         }
-
-user2 = {"Name ": "Karan",
+         "email": "ankit.tiwari@test.com",
+          },
+    {
+        "Name ": "Karan",
          "Age": "22",
-         "id": "2",
+         "id": 2,
          "city": "Mumbai",
-         "email": "karan@kk.com"
+         "email": "karan@kk.com",
+         },
 
-         }
-
-user3 ={"Name ": "Amit",
+         {
+         "Name ": "Amit",
          "Age": "12",
-         "id": "3",
+         "id": 4,
          "city": "Bhopal",
-         "email": "amit@amit.com"}
+         "email": "amit@amit.com",
+         },
 
-
-
-user4= {"Name ": "Ram",
+         { "Name ": "Ram",
          "Age": "28",
-         "id": "4",
+         "id": 4,
          "city": "Varanasi",
-         "email": "ram@ram.com"}
+         "email": "ram@ram.com"
+
+          }]}
+
+"""--------------------------------------------------------------------------------------------------------------"""
+
+
+Profile = { "id":"1",
+            "Name":"Ankit",
+            "Age" :"25",
+            "Total friends":"322",
+            "Profil pic":"http://somepic.com",
+            "Last updated ":"jan 12 2017",
+            "Total photos":"200",
+            "Followed by":"70",
+            "Status":"I am happy today "
+}
 
 
 @app.route('/')
@@ -59,9 +75,9 @@ def render():
 
 def foo():
 
-    error_dic = {"error":"Id can not be empty"}
-    error_dic2 = {"error": "Name can not be empty"}
-    error_di3= {"error":"Key missing", "Read":"http://sasasa.com"}
+    # error_dic = {"error":"Id can not be empty"}
+    # error_dic2 = {"error": "Name can not be empty"}
+    # error_di3= {"error":"Key missing", "Read":"http://sasasa.com"}
 
     # if len(request.form) < 2:
     #     return jsonify(error_di3)
@@ -73,11 +89,9 @@ def foo():
     #
     #
     # else:
-
     data = request.form.to_dict()
     data['created at'] = ts
     return jsonify(data=data)
-
 
 
 """                     USER APIS   GET method """
@@ -88,151 +102,73 @@ def foo():
 
 def list_alluser():
 
-    userlist= []
-    userlist.append(user1)
-    userlist.append(user2)
-    userlist.append(user3)
-    userlist.append(user4)
-    return jsonify(data=userlist)
+    return jsonify(users)
 
-@app.route('/listusers/1',methods = ['GET'])
-def listuser1():
+@app.route('/listuser/<int:user_id>')
+def listuser1(user_id):
 
-    return jsonify(data=user1)
-
-
-
-@app.route('/listusers/2',methods = ['GET'])
-def listuser2():
-
-    return jsonify(data=user2)
-
-@app.route('/listusers/3',methods = ['GET'])
-def listuser3():
-
-    return jsonify(data=user3)
-
-@app.route('/listusers/4',methods = ['GET'])
-def listuser4():
-
-    return jsonify(data=user4)
-
+        return jsonify(users['data'][user_id-1])
 
 #--------------------------------------------------
 
 
-
 """DELETE METHOD """
-@app.route('/deleteuser/4',methods = ['DELETE'])
-def deleteuser4():
+
+@app.route('/deleteuser/<int:user_id>',methods = ['DELETE'])
+def delete_user(user_id):
     data = 204
     return jsonify(data)
-
-@app.route('/deleteuser/3',methods = ['DELETE'])
-def deleteuser3():
-    data = 204
-    return jsonify(data)
-
-@app.route('/deleteuser/2',methods = ['DELETE'])
-def deleteuser2():
-    data = 204
-    return jsonify(data)
-
-@app.route('/deleteuser/1',methods = ['DELETE'])
-def deleteuser1():
-    data = 204
-    return jsonify(data)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #----------------------------------
-
-#DELAY res
-
-
-# @app.route('/delay',methods = ['GET'])
-# def delay():
-#
-#     time.sleep(3)
-#     return jsonify(data=user4)
-#
-#
-#
 
 
 
 """PUT METHOD"""
 
-@app.route('/updateuser/1', methods=['PUT'])
-def userupdate():
+@app.route('/updateuser/<int:user_id>', methods=['PUT'])
+def userupdate1(user_id):
+
     ts = time.ctime()
-    data = request.get_json()
-    data= dict(data)
-    data['updated at']=ts
-    return jsonify(data=data)
-
-
-@app.route('/updateuser/2', methods=['PUT'])
-def userupdate1():
-    ts = time.ctime()
-    data = request.get_json()
-    data= dict(data)
-    data['updated at']=ts
-    return jsonify(data=data)
-
-
-@app.route('/updateuser/3', methods=['PUT'])
-def userupdate2():
-    ts = time.ctime()
-    data = request.get_json()
+    data = request.form.to_dict()
     data= dict(data)
     data['updated at']=ts
     return jsonify(data=data)
 
 
 
-@app.route('/updateuser/4', methods=['PUT'])
-def userupdate3():
-    ts = time.ctime()
-    data = request.get_json()
-    data= dict(data)
-    data['updated at']=ts
-    return jsonify(data=data)
+
+@app.route('/delay/<int:sleep>')
+def delayres(sleep):
+    time.sleep(sleep)
+    return jsonify(users)
 
 
-@app.route('/login', methods=['POST'])
 
 
+# @app.route('/login', methods=['POST'])
+#
+#
 # def login(email="",password=""):
 #
 #     error_dic = {"error":"Id can not be empty"}
 #     error_dic2 = {"error": "Name can not be empty"}
 #     error_di3= {"error":"Key missing", "Read":"http://sasasa.com"}
 #
+#     data= request.form['id']
+#     print data
 #
-#          #print "Email NOT found"
-#     # if data['email']=="":
-#     #       return jsonify(error_dic)
+#     if data['id']=="":
+#           return jsonify(error_dic)
+#
+#     if data['password']=="":
+#         return jsonify(error_dic2)
+#
+#     return "sasa"
+#
+#     # try:
+#     #     data = request.form.to_dict()
 #     #
-#     # if data['password']=="":
-#     #     return jsonify(error_dic2)
-#
-#     try:
-#         data = request.form.to_dict()
-#
-#     # password = request.form['password']
+#     #     password = request.form['password']
 #     #
 #     # if email==None:
 #     #     return jsonify(data=error_dic)
@@ -240,13 +176,11 @@ def userupdate3():
 #     #     return jsonify(data=error_dic2)
 #     #
 #     # else:
-#         data['token'] = "KXR"+str(time.time())
-#         return jsonify(data=data)
-#     except:
-#         return jsonify(data=error_dic)
+#     #     data['token'] = "KXR"+str(time.time())
+#     #     return jsonify(data=data)
+#     # except:
+#     #     return jsonify(data=error_dic)
 #
-
-
 
 
 @app.errorhandler(404)
@@ -261,27 +195,10 @@ def render_400(e):
     return jsonify(data = error_di3),400
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@app.errorhandler(500)
+def render_500(e):
+    error_di3 = {"error": "Value error"}
+    return jsonify(data = error_di3),500
 
 
 
