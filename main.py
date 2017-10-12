@@ -70,6 +70,15 @@ def render():
     return render_template("Apidoc1.html")
 
 
+
+
+@app.route('/sitemap.xml')
+def renderw():
+    return render_template("sitemap.xml")
+
+
+
+
 @app.route('/adduser', methods=['POST'])
 
 
