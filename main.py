@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 
 # global json data
-# add more data here 
+# add more data here
 
 users = {"data":[
 
