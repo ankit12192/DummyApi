@@ -1,84 +1,19 @@
-from flask import Flask, abort, request,jsonify,render_template
+from flask import Flask, request,jsonify,render_template
 import json
 import time
 import os
+from Dict import users
 
 app = Flask(__name__)
-
-# global json data
-# add more data here
-
-users = {"data":[
-
-    {
-
-         "id": 1,
-         "Name ": "Ankit Tiwari",
-         "Age": "25",
-
-         "city": "Bangalore",
-         "email": "ankit.tiwari@test.com",
-          },
-    {
-        "Name ": "Karan",
-         "Age": "22",
-         "id": 2,
-         "city": "Mumbai",
-         "email": "karan@kk.com",
-         },
-
-         {
-         "Name ": "Amit",
-         "Age": "12",
-         "id": 4,
-         "city": "Bhopal",
-         "email": "amit@amit.com",
-         },
-
-         { "Name ": "Ram",
-         "Age": "28",
-         "id": 4,
-         "city": "Varanasi",
-         "email": "ram@ram.com"
-
-          }]}
-
-"""--------------------------------------------------------------------------------------------------------------"""
-
-
-Profile = { "id":"1",
-            "Name":"Ankit",
-            "Age" :"25",
-            "Total friends":"322",
-            "Profil pic":"http://somepic.com",
-            "Last updated ":"jan 12 2017",
-            "Total photos":"200",
-            "Followed by":"70",
-            "Status":"Hey Social media is using me  "
-}
-
-
-
-
-
-
-
-#---------------------------------------------------USER DATA API CODE --------------------------------------------------
-
-
 
 @app.route('/')
 def my_form():
     return render_template("index.html")
 
 
-
-"""Customer API TEMP """
-
 @app.route('/Apidoc1')
 def render():
     return render_template("Apidoc1.html")
-
 
 
 
@@ -89,25 +24,13 @@ def renderw():
 
 
 
+
 @app.route('/adduser', methods=['POST'])
 
 
 def foo():
 
-    # error_dic = {"error":"Id can not be empty"}
-    # error_dic2 = {"error": "Name can not be empty"}
-    # error_di3= {"error":"Key missing", "Read":"http://sasasa.com"}
-
-    # if len(request.form) < 2:
-    #     return jsonify(error_di3)
     ts = time.ctime()
-    # if request.form['id']=="":
-    #      return jsonify(error_dic)
-    # if request.form['name']=="":
-    #     return jsonify(error_dic2)
-    #
-    #
-    # else:
     data = request.form.to_dict()
     data['created at'] = ts
     return jsonify(data=data)
@@ -155,51 +78,10 @@ def userupdate1(user_id):
 
 
 
-
 @app.route('/delay/<int:sleep>')
 def delayres(sleep):
     time.sleep(sleep)
     return jsonify(users)
-
-
-
-
-# @app.route('/login', methods=['POST'])
-#
-#
-# def login(email="",password=""):
-#
-#     error_dic = {"error":"Id can not be empty"}
-#     error_dic2 = {"error": "Name can not be empty"}
-#     error_di3= {"error":"Key missing", "Read":"http://sasasa.com"}
-#
-#     data= request.form['id']
-#     print data
-#
-#     if data['id']=="":
-#           return jsonify(error_dic)
-#
-#     if data['password']=="":
-#         return jsonify(error_dic2)
-#
-#     return "sasa"
-#
-#     # try:
-#     #     data = request.form.to_dict()
-#     #
-#     #     password = request.form['password']
-#     #
-#     # if email==None:
-#     #     return jsonify(data=error_dic)
-#     # if password==None:
-#     #     return jsonify(data=error_dic2)
-#     #
-#     # else:
-#     #     data['token'] = "KXR"+str(time.time())
-#     #     return jsonify(data=data)
-#     # except:
-#     #     return jsonify(data=error_dic)
-#
 
 
 @app.errorhandler(404)
@@ -220,16 +102,6 @@ def render_500(e):
     return jsonify(data = error_di3),500
 
 
-#-------------------------------------------------END OF USER API-------------------------------------------------------
-
-
-
-#------------------------------------------------SOCIAL API-------------------------------------------------------------
-
-
-#--------------------------------------------END OF SOCIAL API----------------------------------------------------------
-
-
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run( port=port, debug=True)

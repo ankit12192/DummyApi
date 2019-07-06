@@ -22,7 +22,7 @@
 # #     "name": "morpheus",
 # #     "job": "zion resident",
 # #     "id":"10"
-# # }
+# # }`
 #
 # # res2 = requests.delete("http://0.0.0.0:5010/deleteuser/4")
 # # print res2.content
